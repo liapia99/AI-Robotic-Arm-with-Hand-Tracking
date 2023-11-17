@@ -19,6 +19,7 @@ String receivedString;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(256000);
+  Serial.setRxBufferSize(256); 
   servoThumb.attach(2);
   servoIndex.attach(3);
   servoMiddle.attach(4);
