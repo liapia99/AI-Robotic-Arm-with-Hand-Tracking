@@ -18,7 +18,7 @@ String receivedString;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial. begin(9600);
+  Serial.begin(256000);
   servoThumb.attach(2);
   servoIndex.attach(3);
   servoMiddle.attach(4);
@@ -48,6 +48,7 @@ void receiveData(){
     }
   }
 }
+ Serial.flush();
 }
 void loop(){
   receiveData();
@@ -57,4 +58,3 @@ void loop(){
   if (valsRec[3]==1){servoRing.write(180);}else{servoRing.write(0);}
   if (valsRec[4]==1){servoPinky.write(180);}else{servoPinky.write(0);}
 }
-  
