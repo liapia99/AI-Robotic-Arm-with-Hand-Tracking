@@ -17,9 +17,8 @@ String receivedString;
 
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(256000);
- 
+ //using an Arduino Mega
   servoThumb.attach(2);
   servoIndex.attach(3);
   servoMiddle.attach(4);
