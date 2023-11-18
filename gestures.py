@@ -3,7 +3,8 @@ import mediapipe as mp
 import serial
 import time
 
-# Initialize mediapipe hands module
+# Make sure to install the following packages: cvzone, mediapipe
+
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
@@ -36,6 +37,7 @@ while cap.isOpened():
             mySerial.write(data_to_send.encode())
             mySerial.flush()
 
+            # Adding a delay to help the serial monitor process the data collected
             time.sleep(0.1)
 
             # Draw lines through the fingers
@@ -52,8 +54,8 @@ while cap.isOpened():
     # Display the frame
     cv2.imshow('Hand Tracking', frame)
 
-    # Break the loop if 'q' key is pressed
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    # Break the loop if 'x' key is pressed
+    if cv2.waitKey(1) & 0xFF == ord('x'):
         break
 
 # Release the video capture object and close all windows
