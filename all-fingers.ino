@@ -52,6 +52,10 @@ void receiveData(){
 }
 void loop(){
   receiveData();
+  for(int i = 0; i < numOfValsRec; i++){
+    Serial.print(valsRec[i]);
+    Serial.print("");
+  }
   if (valsRec[0]==1){servoThumb.write(180);}else{servoThumb.write(0);}
   if (valsRec[1]==1){servoIndex.write(180);}else{servoIndex.write(0);}
   if (valsRec[2]==1){servoMiddle.write(180);}else{servoMiddle.write(0);}
