@@ -21,6 +21,6 @@ void moveServo(int value) {
     servoRing.write(180);
   } else if (value == 1) {
     // Move back to original position when '1' is received
-    servoRing.write(90);  // Adjust the value to the original position
+    servoRing.write(0);  // Adjust the value to the original position
   }
 }
