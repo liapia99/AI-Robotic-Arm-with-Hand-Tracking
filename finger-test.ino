@@ -1,29 +1,26 @@
 #include <Servo.h>
-Servo servoindex;          // Define index servo
 
-void setup() { 
-  servoindex.attach(3);  // Set index servo to digital pin 3
-} 
+Servo servoRing;  // Define ring finger servo
+int receivedValue = 0;  // Variable to store received data
 
-void loop() {            // Loop through motion tests
-//alltomiddle();        
-//delay(4000);           // Wait 4000 milliseconds (4 seconds)
-  alltorest();           
-  delay(4000);           
-  alltomax();            
-  delay(2000);           
+void setup() {
+  Serial.begin(9600);
+  servoRing.attach(3);  // Set ring finger servo to digital pin 3
 }
 
-// Motion to set the servo into "virtual" 0 position: alltovirtual
-void alltomiddle() {         
-  servoindex.write(90);
-}
-// Motion to set the servo into "rest" position: alltorest
-void alltorest() {         
-  servoindex.write(0);
+void loop() {
+  if (Serial.available() > 0) {
+    receivedValue = Serial.read() - '0';  // Read the received data and convert ASCII to integer
+    moveServo(receivedValue);  // Move the servo based on the received data
+  }
 }
 
-// Motion to set the servo into "max" position: alltomax
-void alltomax() {
-  servoindex.write(180);
+void moveServo(int value) {
+  if (value == 0) {
+    // Move to max position when '0' is received
+    servoRing.write(180);
+  } else if (value == 1) {
+    // Move back to original position when '1' is received
+    servoRing.write(90);  // Adjust the value to the original position
+  }
 }
