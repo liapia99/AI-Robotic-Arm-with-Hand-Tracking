@@ -11,5 +11,11 @@ Step two (2024): Build a dermatology image recognition system. This system will 
 
 Throughout the project, I encountered many issues. Here are the steps I recommend based on my troubleshooting:
 
-1. Start with finger_test.ino. From the servo, the brown wire goes to power, the orange/red goes to ground and the yellow goes to your digital pin. I used pins 3, 5, 6, 9, and 10. Test the "tendon" wiring of each servo by inputting 1 and 0 into the serial monitor. When the value is '1', the finger should open and when the value is '0', the finger should close towards the palm. Sometimes the servos do the opposite. Simply change the value of the write if this is the case.
-2. 
+- Start with finger_test.ino. From the servo, the brown wire goes to power, the orange/red goes to ground and the yellow goes to your digital pin. I used pins 3, 5, 6, 9, and 10. Test the "tendon" wiring of each servo by inputting 1 and 0 into the serial monitor. When the value is '1', the finger should open and when the value is '0', the finger should close towards the palm. Sometimes the servos do the opposite. Simply change the value of the write if this is the case.
+
+- Here are the Python packages I installed:
+   ``` pip install pyserial
+       pip install mediapipe
+       pip install serialDevice
+       pip cvzone
+   ```
