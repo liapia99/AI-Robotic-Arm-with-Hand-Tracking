@@ -1,11 +1,11 @@
 #include <Servo.h>
 
-Servo servoRing;  // Define ring finger servo
+Servo servo1;  // Define servo
 int receivedValue = 0;  // Variable to store received data
 
 void setup() {
   Serial.begin(9600);
-  servoRing.attach(3);  // Set ring finger servo to digital pin 3
+  servo1.attach(3);  // Set servo to digital pin 3 - can check all five servos by changing this value
 }
 
 void loop() {
@@ -17,10 +17,11 @@ void loop() {
 
 void moveServo(int value) {
   if (value == 0) {
-    // Move to max position when '0' is received
-    servoRing.write(180);
+    // Move to "closed finger" position when '0' is received
+    servo1.write(0);
   } else if (value == 1) {
-    // Move back to original position when '1' is received
-    servoRing.write(0);  // Adjust the value to the original position
+    // Move to "open finger" position when '1' is received
+    servo1.write(180);  
+    // For some servos, it might be necessary to adjust the value that is written
   }
 }
