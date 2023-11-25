@@ -1,64 +1,40 @@
 #include <Servo.h>
-#define numOfValsRec 5
-#define digitsPerValRec 1
 
 Servo servoThumb;
-Servo servoIndex;
+Servo servoPointer;
 Servo servoMiddle;
 Servo servoRing;
 Servo servoPinky;
 
-int valsRec[numOfValsRec];
-//$00000
-int stringLength = numOfValsRec * digitsPerValRec + 1;
-int counter = 0;
-bool counterStart = false;
-String receivedString;
-
-
 void setup() {
-  Serial.begin(256000);
- //using an Arduino Mega
-  servoThumb.attach(2);
-  servoIndex.attach(3);
-  servoMiddle.attach(4);
-  servoRing.attach(5);
-  servoPinky.attach(6);
+  servoThumb.attach(3);
+  servoPointer.attach(5);
+  servoMiddle.attach(6);
+  servoRing.attach(9);
+  servoPinky.attach(10);
+
+  Serial.begin(9600);
 }
 
-void receiveData(){
-  while (Serial.available()){
-    char c = Serial.read();
-    if (c=='$'){
-      counterStart = true;
-    }
-    if (counterStart){
-      if (counter < stringLength){
-        receivedString = String(receivedString+c);
-        counter++;
-      }
-      if (counter>=stringLength){
-        for(int i = 0; i<numOfValsRec; i++){
-          int num = (i*digitsPerValRec)+1;
-        valsRec[i] = receivedString.substring(num, num + digitsPerValRec).toInt();
-      }
-      receivedString = "";
-      counter = 0;
-      counterStart = false;
-    }
+void loop() {
+  if (Serial.available() > 0) {
+    String inputString = Serial.readStringUntil('\n');
+    moveServos(inputString);
   }
 }
- Serial.flush();
-}
-void loop(){
-  receiveData();
-  for(int i = 0; i < numOfValsRec; i++){
-    Serial.print(valsRec[i]);
-    Serial.print("");
+
+void moveServos(String input) {
+  if (input.length() == 5) {
+    int pos1 = input.charAt(0) == '0' ? 0 : 180;
+    int pos2 = input.charAt(1) == '0' ? 180 : 0;
+    int pos3 = input.charAt(2) == '0' ? 180 : 0;
+    int pos4 = input.charAt(3) == '0' ? 0 : 180;
+    int pos5 = input.charAt(4) == '0' ? 0 : 180;
+
+    servoThumb.write(pos1);
+    servoPointer.write(pos2);
+    servoMiddle.write(pos3);
+    servoRing.write(pos4);
+    servoPinky.write(pos5);
   }
-  if (valsRec[0]==1){servoThumb.write(180);}else{servoThumb.write(0);}
-  if (valsRec[1]==1){servoIndex.write(180);}else{servoIndex.write(0);}
-  if (valsRec[2]==1){servoMiddle.write(180);}else{servoMiddle.write(0);}
-  if (valsRec[3]==1){servoRing.write(180);}else{servoRing.write(0);}
-  if (valsRec[4]==1){servoPinky.write(180);}else{servoPinky.write(0);}
 }
