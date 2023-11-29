@@ -21,6 +21,7 @@ def move_servos(hand_landmarks):
     middle_tip_y = hand_landmarks.landmark[12].y
     ring_tip_y = hand_landmarks.landmark[16].y
     pinky_tip_y = hand_landmarks.landmark[20].y
+    
     # If the fingertips go past these points, then the fingers are closed
     thumb_knuckle_y = hand_landmarks.landmark[5].y
     pointer_knuckle_y = hand_landmarks.landmark[5].y
@@ -34,6 +35,16 @@ def move_servos(hand_landmarks):
     ring_closed = 1 if ring_tip_y < ring_knuckle_y else 0
     pinky_closed = 1 if pinky_tip_y < pinky_knuckle_y else 0
 
+    # Determine if the middle finger is given
+    middlefinger1 = thumb_tip_y < thumb_knuckle_y and pointer_tip_y < pointer_knuckle_y
+    middlefinger2 = middle_tip_y < middle_knuckle_y and ring_tip_y < ring_knuckle_y and pinky_tip_y < pinky_knuckle_y
+
+    # If so, make the hand open 
+    thumb_closed = 1 if middlefinger1 else 0
+    pointer_closed = 1 if middlefinger1 else 0
+    middle_closed = 1 if middlefinger2 else 0
+    ring_closed = 1 if middlefinger2 else 0
+    pinky_closed = 1 if middlefinger2 else 0
 
     command = f"{thumb_closed}{pointer_closed}{middle_closed}{ring_closed}{pinky_closed}"
     print(f"Sending command: {command}")
