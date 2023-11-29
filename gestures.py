@@ -35,18 +35,30 @@ def move_servos(hand_landmarks):
     ring_closed = 1 if ring_tip_y < ring_knuckle_y else 0
     pinky_closed = 1 if pinky_tip_y < pinky_knuckle_y else 0
 
-    # Determine if the middle finger is given
-    middlefinger1 = thumb_tip_y < thumb_knuckle_y and pointer_tip_y < pointer_knuckle_y
-    middlefinger2 = middle_tip_y < middle_knuckle_y and ring_tip_y < ring_knuckle_y and pinky_tip_y < pinky_knuckle_y
+    # Check for specific binary sequences and set the corresponding fingers to be closed
+    if thumb_tip_y < thumb_knuckle_y and pointer_tip_y < pointer_knuckle_y:
+        thumb_closed = 1
+        pointer_closed = 1
+    else:
+        thumb_closed = 0
+        pointer_closed = 0
 
-    # If so, make the hand open 
-    thumb_closed = 1 if middlefinger1 else 0
-    pointer_closed = 1 if middlefinger1 else 0
-    middle_closed = 1 if middlefinger2 else 0
-    ring_closed = 1 if middlefinger2 else 0
-    pinky_closed = 1 if middlefinger2 else 0
+    if middle_tip_y < middle_knuckle_y and ring_tip_y < ring_knuckle_y and pinky_tip_y < pinky_knuckle_y:
+        middle_closed = 1
+        ring_closed = 1
+        pinky_closed = 1
+    else:
+        middle_closed = 0
+        ring_closed = 0
+        pinky_closed = 0
 
+    # Set the corresponding fingers to be closed based on the conditions
     command = f"{thumb_closed}{pointer_closed}{middle_closed}{ring_closed}{pinky_closed}"
+
+    # Check for specific binary sequences and replace them with '11111'
+    if command == '10100' or command == '00100':
+        command = '11111'
+
     print(f"Sending command: {command}")
     ser.write((command + '\n').encode('utf-8'))
 
