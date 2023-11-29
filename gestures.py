@@ -3,7 +3,7 @@ import mediapipe as mp
 import serial
 
 
-arduino_port = "/dev/cu.usbmodem2101"  # Change this to your Arduino port
+arduino_port = "/dev/ttyACM0"  # Change this to your Arduino port - Linux: /ttyACM0 and Mac - /cu.usbmodem2101
 arduino_baudrate = 9600
 ser = serial.Serial(arduino_port, arduino_baudrate, timeout=1)
 
@@ -34,23 +34,6 @@ def move_servos(hand_landmarks):
     middle_closed = 1 if middle_tip_y < middle_knuckle_y else 0
     ring_closed = 1 if ring_tip_y < ring_knuckle_y else 0
     pinky_closed = 1 if pinky_tip_y < pinky_knuckle_y else 0
-
-    # Check for specific binary sequences and set the corresponding fingers to be closed
-    if thumb_tip_y < thumb_knuckle_y and pointer_tip_y < pointer_knuckle_y:
-        thumb_closed = 1
-        pointer_closed = 1
-    else:
-        thumb_closed = 0
-        pointer_closed = 0
-
-    if middle_tip_y < middle_knuckle_y and ring_tip_y < ring_knuckle_y and pinky_tip_y < pinky_knuckle_y:
-        middle_closed = 1
-        ring_closed = 1
-        pinky_closed = 1
-    else:
-        middle_closed = 0
-        ring_closed = 0
-        pinky_closed = 0
 
     # Set the corresponding fingers to be closed based on the conditions
     command = f"{thumb_closed}{pointer_closed}{middle_closed}{ring_closed}{pinky_closed}"
