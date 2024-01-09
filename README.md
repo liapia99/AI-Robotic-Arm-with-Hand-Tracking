@@ -32,6 +32,7 @@ Step two (2024): Build a dermatology image recognition system. This system will 
      - Unplug the webcam and plug it back in. Sometimes, it does not register when you run the Python code.
      - If your fingers are not moving all the way up, make sure the string through the fingers is tight when in the position you want. If not,               tighten the wiring and even check if the pulley is fully screwed into the servo.
 
+For a more in-depth documentation of the project : https://lukapia.notion.site/AI-Robotic-Arm-with-Hand-Tracking-170db8c15b69403f97ed5d3b6d776fba
  
 ## Changes To Be Made
 
