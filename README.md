@@ -1,5 +1,7 @@
 # AI-Robotic-Arm-with-Hand-Tracking
 
+For more in-depth documentation of the project: https://lukapia.notion.site/AI-Robotic-Arm-with-Hand-Tracking-170db8c15b69403f97ed5d3b6d776fba
+
 Hi there! A few months ago, I rewatched Big Hero 6, a Disney movie about a group of friends with unique talents forming a superhero team to combat a masked villain threatening the city. Along with them is a healthcare provider robot named Baymax. Baymax inspired me to explore how engineering and healthcare can work together to get people the care they need. I was fascinated by the ongoing efforts to develop robots that assist healthcare professionals in diagnostics, surgeries, and patient care.
 
 While I would love to make my own healthcare provider robot someday, I wanted to start with a feasible project for 2023. I began researching how I could build the different parts of Baymax. Step one, which is this project is to build a robotic arm with artificial intelligence. Baymax can respond to its patients with appropriate gestures. Although this project does not program the arm to have responses to different gestures, it does use computer vision to track hand movements and replicate that on the 3D printed arm using **python**. 
@@ -31,8 +33,6 @@ Step two (2024): Build a dermatology image recognition system. This system will 
      - Try a different port on the computer, and make sure to note the change in your code.
      - Unplug the webcam and plug it back in. Sometimes, it does not register when you run the Python code.
      - If your fingers are not moving all the way up, make sure the string through the fingers is tight when in the position you want. If not,               tighten the wiring and even check if the pulley is fully screwed into the servo.
-
-For a more in-depth documentation of the project : https://lukapia.notion.site/AI-Robotic-Arm-with-Hand-Tracking-170db8c15b69403f97ed5d3b6d776fba
  
 ## Changes To Be Made
 
