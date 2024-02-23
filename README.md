@@ -40,7 +40,9 @@ Step two (2024): Build a dermatology image recognition system. This system will 
 - download Anaconda
 - Open Linux terminal and write the following command: ```bash ~/Downloads/Anaconda3-2020.07-Linux-x86_64.sh```
 - follow the directions to install Anaconda in the terminal
-- 
+- https://saturncloud.io/blog/solving-the-conda-command-not-found-issue-after-installing-anaconda3/
+- conda create -n opencv-env python=3.9.2 - version i have
+- on linux debian 
 
 
 
