@@ -36,4 +36,12 @@ Step two (2024): Build a dermatology image recognition system. This system will 
  
 ## Changes To Be Made
 
+#Creating an OpenCV environment
+- download Anaconda
+- Open Linux terminal and write the following command: ```bash ~/Downloads/Anaconda3-2020.07-Linux-x86_64.sh```
+- follow the directions to install Anaconda in the terminal
+- 
+
+
+
 - The thumb has a specific position to give the value '1'. So even when you have your thumb out like a thumbs-up gesture, the thumb is considered closed or given the value '0'. For now, in the code, I made the thumb give a value of '0' when the fingertip goes past the knuckle of the pointer finger. I also tried the palm's center and the pinky knuckle; however, these were hard to reach when doing a peace sign or a 🤟 gesture. 
