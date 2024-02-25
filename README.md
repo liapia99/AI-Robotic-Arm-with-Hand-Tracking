@@ -42,7 +42,9 @@ Step two (2024): Build a dermatology image recognition system. This system will 
 - follow the directions to install Anaconda in the terminal
 - https://saturncloud.io/blog/solving-the-conda-command-not-found-issue-after-installing-anaconda3/
 - conda create -n opencv-env python=3.9.2 - version i have
-- on linux debian 
+- on linux debian
+- Environments ensure that programs run consistently across machines by bundling up the packages and versions that the program was created with.
+- 
 
 
 
