@@ -53,3 +53,13 @@ Step two (2024): Build a dermatology image recognition system. This system will 
 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 [ WARN:0@0.767] global /croot/opencv-suite_1691620365762/work/modules/videoio/src/cap_gstreamer.cpp (862) isPipelinePlaying OpenCV | GStreamer warning: GStreamer: pipeline have not been created
 Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+
+File "/home/idealab/ai_arm/gestures.py", line 76, in <module>
+    move_servos(hand_landmarks)
+  File "/home/idealab/ai_arm/gestures.py", line 46, in move_servos
+    ser.write((command + '\n').encode('utf-8'))
+  File "/home/idealab/anaconda3/lib/python3.11/site-packages/serial/serialposix.py", line 655, in write
+    raise SerialException('write failed: {}'.format(e))
+serial.serialutil.SerialException: write failed: [Errno 5] Input/output error
+
+
