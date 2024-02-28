@@ -80,3 +80,8 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 ser.close()
+
+try:
+    ser.close()
+except serial.serialutil.SerialException as e:
+    print(f"Error closing serial port: {e}")
