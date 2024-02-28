@@ -49,6 +49,12 @@ while True:
     # Capture a frame from the webcam
     ret, frame = cap.read()
 
+    # Check if frame is successfully captured
+    if not ret:
+        print("Webcam has crashed! Sending arm to position '11111'")
+        ser.write('11111\n'.encode('utf-8'))
+        break
+
     # Display the webcam frame
     cv2.imshow("Hand Tracking", frame)
 
