@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Tracking</title>
+</head>
+<body>
+    <h1>Hand Tracking with OpenCV and Flask</h1>
+    <button onclick="startCamera()">Start Camera</button>
+    <button onclick="stopCamera()">Stop Camera</button>
+    <div>
+        <img id="videoFeed" src="" alt="Video feed will appear here">
+    </div>
+  
+    <script>
+        var videoFeed = document.getElementById('videoFeed');
+        
+        function startCamera() {
+            videoFeed.src = '/video_feed';
+        }
+
+        function stopCamera() {
+            videoFeed.src = '';
+        }
+    </script>
+</body>
+</html>
