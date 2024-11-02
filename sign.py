@@ -25,27 +25,90 @@ def analyze_hand_landmarks(landmarks, image_shape, wrist_depth):
     return results
 
 def detect_sign_language_letter(analysis):
-    """
+ """
     This function takes the hand analysis results and maps them to a sign language letter.
-    In this example, we're detecting the letter 'A'.
     """
     thumb_status = analysis['fingers']['thumb']['status']
     index_status = analysis['fingers']['index']['status']
     middle_status = analysis['fingers']['middle']['status']
     ring_status = analysis['fingers']['ring']['status']
     pinky_status = analysis['fingers']['pinky']['status']
-    
-    # Example gesture for letter 'A': All fingers closed except thumb.
-    if (thumb_status == 'open' and
+
+    # Letter 'A': All fingers closed except thumb
+    if (thumb_status == 'closed' and
         index_status == 'closed' and
         middle_status == 'closed' and
         ring_status == 'closed' and
         pinky_status == 'closed'):
         return 'A'
-    
-    # Add more letter conditions here.
-    
-    return None  # No letter detected
+
+    # Letter 'B': All fingers open, thumb across palm
+    elif (thumb_status == 'closed' and
+          index_status == 'open' and
+          middle_status == 'open' and
+          ring_status == 'open' and
+          pinky_status == 'open'):
+        return 'B'
+
+    # Letter 'C': All fingers curved as if holding a cup
+    elif (thumb_status == 'curved' and
+          index_status == 'curved' and
+          middle_status == 'curved' and
+          ring_status == 'curved' and
+          pinky_status == 'curved'):
+        return 'C'
+
+    # Letter 'D': Index finger up, other fingers in a fist, thumb touching middle finger
+    elif (thumb_status == 'touching_middle' and
+          index_status == 'open' and
+          middle_status == 'closed' and
+          ring_status == 'closed' and
+          pinky_status == 'closed'):
+        return 'D'
+
+    # Letter 'E': All fingers curled toward palm, thumb crossing over
+    elif (thumb_status == 'crossing' and
+          index_status == 'curved' and
+          middle_status == 'curved' and
+          ring_status == 'curved' and
+          pinky_status == 'curved'):
+        return 'E'
+
+    # Letter 'F': Thumb and index finger form a circle, other fingers extended
+    elif (thumb_status == 'touching_index' and
+          index_status == 'touching_thumb' and
+          middle_status == 'open' and
+          ring_status == 'open' and
+          pinky_status == 'open'):
+        return 'F'
+
+    # Letter 'G': Thumb and index finger extended, other fingers closed
+    elif (thumb_status == 'closed' and
+          index_status == 'open' and
+          middle_status == 'closed' and
+          ring_status == 'closed' and
+          pinky_status == 'closed'):
+        return 'G'
+
+    # Letter 'H': Index and middle fingers extended, other fingers closed
+    elif (thumb_status == 'closed' and
+          index_status == 'open' and
+          middle_status == 'open' and
+          ring_status == 'closed' and
+          pinky_status == 'closed'):
+        return 'H'
+
+    # Letter 'I': Pinky finger extended, other fingers closed
+    elif (thumb_status == 'closed' and
+          index_status == 'closed' and
+          middle_status == 'closed' and
+          ring_status == 'closed' and
+          pinky_status == 'open'):
+        return 'I'
+
+    # No letter detected
+    return None
+
 
 # OpenCV video capture
 cap = cv2.VideoCapture(0)
